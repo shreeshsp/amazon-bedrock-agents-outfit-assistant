@@ -2,7 +2,6 @@
 ## Outfit Assistant 
 
 ![What should I wear today?](/images/ai-robot-assistant-outfits.png)
-*Source: Titan Image Generator G1 - 'illustration of different weather and outfits'*
 
 Note: The demo relies on you having an account with OpenWeatherMap, and an API key to access the [Weather](https://openweathermap.org/current) service.  This service is available on the OpenWeatherMap free plan. 
 
