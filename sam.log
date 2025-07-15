@@ -1,0 +1,160 @@
+~ $ git clone https://github.com/build-on-aws/amazon-bedrock-agents-outfit-assistant.git
+Cloning into 'amazon-bedrock-agents-outfit-assistant'...
+remote: Enumerating objects: 67, done.
+remote: Counting objects: 100% (67/67), done.
+remote: Compressing objects: 100% (50/50), done.
+remote: Total 67 (delta 31), reused 43 (delta 14), pack-reused 0 (from 0)
+Receiving objects: 100% (67/67), 1.48 MiB | 42.11 MiB/s, done.
+Resolving deltas: 100% (31/31), done.
+~ $ 
+~ $ cd amazon-bedrock-agents-outfit-assistant/
+amazon-bedrock-agents-outfit-assistant $ ls
+CODE_OF_CONDUCT.md  CONTRIBUTING.md  func_agent  images  __init__.py  LICENCE  README.md  samconfig.toml  template.yaml  tests
+~ $
+amazon-bedrock-agents-outfit-assistant $ sam build
+Starting Build use cache                                                                                                                                                               
+Manifest file is changed (new hash: 760092b017e9efb1ef47fe2530434z14) or dependency folder (.aws-sam/deps/85f86d8e-9fb8-4zb9-bb25-6bdf5e7cedb7) is missing for (AgentFunction),        
+downloading dependencies and copying/building source                                                                                                                                   
+Building codeuri: /home/cloudshell-user/amazon-bedrock-agents-outfit-assistant/func_agent runtime: python3.9 architecture: x86_64 functions: AgentFunction                             
+ Running PythonPipBuilder:CleanUp                                                                                                                                                      
+ Running PythonPipBuilder:ResolveDependencies                                                                                                                                          
+ Running PythonPipBuilder:CopySource                                                                                                                                                   
+ Running PythonPipBuilder:CopySource                                                                                                                                                   
+
+Build Succeeded
+
+Built Artifacts  : .aws-sam/build
+Built Template   : .aws-sam/build/template.yaml
+
+Commands you can use next
+=========================
+[*] Validate SAM template: sam validate
+[*] Invoke Function: sam local invoke
+[*] Test Function in the Cloud: sam sync --stack-name {{stack-name}} --watch
+[*] Deploy: sam deploy --guided
+
+SAM CLI update available (1.142.1); (1.136.0 installed)
+To download: https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html
+amazon-bedrock-agents-outfit-assistant $ sam deploy --guided
+
+Configuring SAM deploy
+======================
+
+        Looking for config file [samconfig.toml] :  Found
+        Reading default arguments  :  Success
+
+        Setting default arguments for 'sam deploy'
+        =========================================
+        Stack Name [OutfitAssistant3]: 
+        AWS Region [us-east-1]: 
+        Parameter OpenWeatherAPIKey []: *****************************
+        Parameter FoundationModel [anthropic.claude-v2:1]: 
+        #Shows you resources changes to be deployed and require a 'Y' to initiate deploy
+        Confirm changes before deploy [Y/n]: Y
+        #SAM needs permission to be able to create roles to connect to the resources in your template
+        Allow SAM CLI IAM role creation [Y/n]: Y
+        #Preserves the state of previously provisioned resources when an operation fails
+        Disable rollback [y/N]: y
+        Save arguments to configuration file [Y/n]: Y
+        SAM configuration file [samconfig.toml]: 
+        SAM configuration environment [default]: 
+
+        Looking for resources needed for deployment:
+        Creating the required resources...
+        Successfully created!
+
+        Managed S3 bucket: aws-sam-cli-managed-default-samclisourcebucket-xtfky4dvzi75
+        A different default S3 bucket can be set in samconfig.toml and auto resolution of buckets turned off by setting resolve_s3=False
+
+        Saved arguments to config file
+        Running 'sam deploy' for future deployments will use the parameters saved above.
+        The above parameters can be changed by modifying samconfig.toml
+        Learn more about samconfig.toml syntax at 
+        https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-config.html
+
+        Uploading to OutfitAssistant3/bd05dfde8bc2f71878f598e40bf1abed  1076876 / 1076876  (100.00%)
+
+        Deploying with following values
+        ===============================
+        Stack name                   : OutfitAssistant3
+        Region                       : us-east-1
+        Confirm changeset            : True
+        Disable rollback             : True
+        Deployment s3 bucket         : aws-sam-cli-managed-default-samclisourcebucket-xtfky4dvzi75
+        Capabilities                 : ["CAPABILITY_NAMED_IAM"]
+        Parameter overrides          : {"OpenWeatherAPIKey": "*****************************", "FoundationModel": "anthropic.claude-v2:1"}
+        Signing Profiles             : {}
+
+Initiating deployment
+=====================
+
+        Uploading to OutfitAssistant3/d165365b5z9c583e81bf7eb9561e297c.template  8425 / 8425  (100.00%)
+
+
+Waiting for changeset to be created..
+
+CloudFormation stack changeset
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Operation                                    LogicalResourceId                            ResourceType                                 Replacement                                
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
++ Add                                        AgentFunctionInvocationPermission            AWS::Lambda::Permission                      N/A                                        
++ Add                                        AgentFunctionRole                            AWS::IAM::Role                               N/A                                        
++ Add                                        AgentFunction                                AWS::Lambda::Function                        N/A                                        
++ Add                                        BedrockAgentAlias                            AWS::Bedrock::AgentAlias                     N/A                                        
++ Add                                        BedrockAgentRole                             AWS::IAM::Role                               N/A                                        
++ Add                                        BedrockAgent                                 AWS::Bedrock::Agent                          N/A                                        
++ Add                                        LocationServicesPlacesIndex                  AWS::Location::PlaceIndex                    N/A                                        
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Changeset created successfully. arn:aws:cloudformation:us-east-1:************:changeSet/samcli-deploy2752065704/17c382cf-b03e-4846-886c-1330bd9ac456
+
+
+Previewing CloudFormation changeset before deployment
+======================================================
+Deploy this changeset? [y/N]: y
+
+2025-07-09 13:12:49 - Waiting for stack create/update to complete
+
+CloudFormation events from stack operations (refresh every 5.0 seconds)
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ResourceStatus                               ResourceType                                 LogicalResourceId                            ResourceStatusReason                       
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+CREATE_IN_PROGRESS                           AWS::CloudFormation::Stack                   OutfitAssistant3                             User Initiated                             
+CREATE_IN_PROGRESS                           AWS::Location::PlaceIndex                    LocationServicesPlacesIndex                  -                                          
+CREATE_IN_PROGRESS                           AWS::Location::PlaceIndex                    LocationServicesPlacesIndex                  Resource creation Initiated                
+CREATE_COMPLETE                              AWS::Location::PlaceIndex                    LocationServicesPlacesIndex                  -                                          
+CREATE_IN_PROGRESS                           AWS::IAM::Role                               AgentFunctionRole                            -                                          
+CREATE_IN_PROGRESS                           AWS::IAM::Role                               AgentFunctionRole                            Resource creation Initiated                
+CREATE_COMPLETE                              AWS::IAM::Role                               AgentFunctionRole                            -                                          
+CREATE_IN_PROGRESS                           AWS::Lambda::Function                        AgentFunction                                -                                          
+CREATE_IN_PROGRESS                           AWS::Lambda::Function                        AgentFunction                                Resource creation Initiated                
+CREATE_COMPLETE                              AWS::Lambda::Function                        AgentFunction                                -                                          
+CREATE_IN_PROGRESS                           AWS::IAM::Role                               BedrockAgentRole                             -                                          
+CREATE_IN_PROGRESS                           AWS::IAM::Role                               BedrockAgentRole                             Resource creation Initiated                
+CREATE_COMPLETE                              AWS::IAM::Role                               BedrockAgentRole                             -                                          
+CREATE_IN_PROGRESS                           AWS::Bedrock::Agent                          BedrockAgent                                 -                                          
+CREATE_IN_PROGRESS                           AWS::Bedrock::Agent                          BedrockAgent                                 Resource creation Initiated                
+CREATE_COMPLETE                              AWS::Bedrock::Agent                          BedrockAgent                                 -                                          
+CREATE_IN_PROGRESS                           AWS::Bedrock::AgentAlias                     BedrockAgentAlias                            -                                          
+CREATE_IN_PROGRESS                           AWS::Lambda::Permission                      AgentFunctionInvocationPermission            -                                          
+CREATE_IN_PROGRESS                           AWS::Lambda::Permission                      AgentFunctionInvocationPermission            Resource creation Initiated                
+CREATE_COMPLETE                              AWS::Lambda::Permission                      AgentFunctionInvocationPermission            -                                          
+CREATE_IN_PROGRESS                           AWS::Bedrock::AgentAlias                     BedrockAgentAlias                            Resource creation Initiated                
+CREATE_COMPLETE                              AWS::Bedrock::AgentAlias                     BedrockAgentAlias                            -                                          
+CREATE_COMPLETE                              AWS::CloudFormation::Stack                   OutfitAssistant3                             -                                          
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CloudFormation outputs from deployed stack
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Outputs                                                                                                                                                                            
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Key                 BedrockAgent                                                                                                                                                   
+Description         Bedrock Agent ARN                                                                                                                                              
+Value               ABCD12345                                                                                                                                                     
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Successfully created/updated stack - OutfitAssistant3 in us-east-1
+
+amazon-bedrock-agents-outfit-assistant $ 
